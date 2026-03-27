@@ -1,0 +1,89 @@
+# @package _group_
+dataroot: ./datasets/UAV-SC
+checkpoints_dir: ./datasets/checkpoints
+gpu_ids: [0]
+
+name: baseline_pix2pix
+model: pix2pix
+dino_cond: null
+isTrain: true
+input_nc: 3
+output_nc: 3
+netG: unet_256
+netD: basic
+n_layers_D: 3
+norm: batch
+use_SN_D: true
+use_SN_G: false
+dropout_G: 0.0
+dropout_D: 0.0
+init_type: normal
+init_gain: 0.02
+dataset_mode: aligned
+direction: AtoB
+num_threads: 4
+batch_size: 2
+num_workers: 2
+prefetch_factor: 4
+max_dataset_size: 9223372036854775807
+no_flip: false
+display_winsize: 256
+lambda_selected_loss: 100.0
+epoch: "200"
+load_iter: 0
+verbose: true
+suffix: ""
+load_checkpoint:
+train_only_D: false
+lambda_laplacian_loss: 0.0
+continue_train: false
+display_id: 1
+display_port: 8097
+display_ncols: 4
+display_server: http://localhost
+display_env: main
+update_html_freq: 1000
+print_freq: 10
+type_loss: L1
+relativisticD: false
+residual_network: false
+use_DEM: false
+no_html: false
+save_latest_freq: 5000
+save_epoch_freq: 10
+save_by_iter: false
+epoch_count: 200
+phase: train
+epoch_count_decay: 100
+beta1: 0.5
+beta2: 0.99
+lr: 0.01
+gan_mode: vanilla
+cosine_warmup_T_mult:
+cosine_warmup_eta_min:
+pool_size: 0
+lr_policy: step
+lr_decay_iters: 50
+use_gammas: false
+attention_layer_depth:
+use_shadow_attention: false
+zero_shadows_in_D: true
+zero_shadows_in_G: false
+aug_crop_size: 512
+lrG:
+lrD:
+D_steps_per_G: 1
+D_warmup_D_steps: 2
+D_warmup_epochs: 20
+label_smooth_real: 1.0
+num_samples: 9223372036854775807
+r1_gamma: 0.0
+ngf: 64
+ndf: 64
+D_steps_per_G_current: 2
+lambda_color_consistency:
+type_loss_G_colour:
+lambda_hvs_l1:
+
+# misc
+clearml_project: deshadow

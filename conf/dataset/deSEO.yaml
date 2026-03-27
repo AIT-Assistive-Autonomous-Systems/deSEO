@@ -1,0 +1,35 @@
+paths:
+  PATH_MASKS: ${hydra:runtime.cwd}/datasets/SEO/shadows_max/shadow_max_compressed/shadow_masks
+  PATH_RGB: ${hydra:runtime.cwd}/datasets/SEO/pansharpened_he
+  PATH_METADATA: ${hydra:runtime.cwd}/datasets/SEO/rpcs/root_dir_ba
+  PATH_RESULTS: ${hydra:runtime.cwd}/results
+  PATH_myDataset: ${hydra:runtime.cwd}/datasets/deSEO
+  PATH_CACHE: ${hydra:runtime.cwd}/datasets/deSEO/cache_offline
+  ROOT_YAML_DIR: ${hydra:runtime.cwd}/datasets/deSEO
+  DEM_TIF_DIR: ${hydra:runtime.cwd}/datasets/SEO/rdsm_max_compressed
+
+filters:
+  MIN_BBOX_IOU: 0.7
+  MAX_DELTA_OFF_NADIR_DEG: 6.0
+  MAX_DELTA_AZIMUTH_DEG: 10.0
+  MAX_DELTA_SUN_EL_DEG: 120.0
+  MAX_NODATA_FRAC: 0.03
+  DELTA_DAYS: 30
+  Max_Shadow_Mask_Selection: true
+  MIN_SHADOW_FRAC:
+  DELTA_DAYS_WINTER:
+
+ALIGN_CFG:
+  top_k: 4096
+  ratio_thresh: 0.72
+  ransac_thresh: 0.5
+  ransac_max_iters: 20000
+  match_backend: desc
+  loftr_pretrained: outdoor
+  loftr_max_size: 1024
+  loftr_conf_thresh: 0.2
+  loftr_max_matches: 8000
+
+NAME: deSEO
+SPLIT: train
+# (or put under `params:` like above)

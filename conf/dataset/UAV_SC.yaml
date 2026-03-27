@@ -1,0 +1,36 @@
+paths:
+  PATH_MASKS: ~/datasets/UAV_SC/masks
+  PATH_RGB: ~/datasets/UAV_SC/rgb
+  PATH_METADATA: ~/datasets/UAV_SC/meta
+  PATH_RESULTS: ~/datasets/UAV_SC/results
+  PATH_myDataset: ~/datasets/UAV_SC/myDataset
+  PATH_CACHE: ~/datasets/UAV_SC/cache
+
+filters:
+  MIN_BBOX_IOU: 0.7
+  MAX_DELTA_OFF_NADIR_DEG: 6.0
+  MAX_DELTA_AZIMUTH_DEG: 10.0
+  MAX_DELTA_SUN_EL_DEG: 120.0
+  MAX_NODATA_FRAC: 0.03
+  DELTA_DAYS: 30
+
+
+ALIGN_CFG:
+  top_k: 4096
+  ratio_thresh: 0.72
+  ransac_thresh: 0.5
+  ransac_max_iters: 20000
+  match_backend: desc
+  loftr_pretrained: outdoor
+  loftr_max_size: 1024
+  loftr_conf_thresh: 0.2
+  loftr_max_matches: 8000
+
+# either flatten:
+NAME: UAV_SC
+SPLIT: train
+
+# or, if you prefer grouping, use:
+# params:
+#   NAME: UAV_SC
+#   SPLIT: train

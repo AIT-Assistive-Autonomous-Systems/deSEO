@@ -1,0 +1,10 @@
+defaults:
+  - pix2pix_vgg        # pull in conf/train/base.yaml
+  - _self_      # then override with the keys in THIS file
+
+use_DEM: false
+name: pix2pix_vgg_no_DEM.yaml
+zero_shadows_in_D: false
+#use_shadow_attention: true
+lambda_selected_loss: 50.0          # keep if your training loop still reads this
+additional_lambda_l1: 2

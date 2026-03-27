@@ -1,0 +1,38 @@
+# @package _group_
+# Everything in this file will live under the top-level node: `test`
+
+# ---- identifiers & IO used directly by test.py ----
+name: srnet                 # used in results path & HTML title
+phase: test                      # typically "test"
+epoch: latest                    # which weights to load; also used in results path
+results_dir: ${hydra:run.dir}/results  # keep outputs under Hydra's run dir
+aspect_ratio: 1.0
+num_test: 100000                 # large number => process all images
+do_inpaint: false                # set true if you provide masks for inpainting
+
+# ---- data options (passed to your test dataloader) ----
+dataset_mode: folder             # adapt to what your loader expects
+dataroot: datasets/deSEO   # folder with test images (or dataset root)
+mask_dir: null                   # e.g., /PATH/TO/MASKS if do_inpaint: true
+batch_size: 1
+num_threads: 4
+serial_batches: true             # no shuffling for test
+shuffle: false
+load_size: 512                   # resize (if your loader uses it)
+crop_size: 512                   # crop size (if used)
+
+# ---- model options (passed to your model factory) ----
+model: srnet                     # adapt to your registry/factory
+checkpoints_dir: datasets/pretrained_models/test/test_0
+gpu_ids: [0]
+input_nc: 3
+output_nc: 3
+# add any extra knobs your model needs, e.g.:
+# ngf: 64
+# n_blocks: 9
+# norm: instance
+
+# ---- visualization / logging ----
+display_id: -1                   # Visualizer display is disabled in test.py
+save_html: true                  # if your visualizer supports HTML export
+verbose: false

@@ -1,0 +1,9 @@
+# conf/tools/offline_align_cache.yaml
+# Options specific to the offline alignment & cache builder tool
+use_loftr: true
+loftr_conf_thresh: 0.20
+LOFTR_MIN_INLIERS: 100
+loftr_max_size: 1024
+CROP_BORDER: 32
+HIST_MATCH_MODE: rgb
+HIST_MATCH: true

@@ -1,0 +1,8 @@
+defaults:
+  # - dataset: deSEO         # pick one file from conf/dataset/  # OLD ONE
+  - dataset: deSEO_better_shadow_filtering_winter_filtering_v3
+  - train: base              # pick one file from conf/train/
+  - test: default               # pick one file from conf/test/
+  - tools: offline_align_cache              # pick one file from conf/tools/
+  - validation: default    # pick one file from conf/validation/
+  - _self_                   # keep last: allow keys below to override included files

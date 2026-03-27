@@ -1,0 +1,13 @@
+defaults:
+  - pix2pix_vgg        # pull in conf/train/base.yaml
+  - _self_      # then override with the keys in THIS file
+
+
+name: pix2pix_vgg_DEM_zero_shadows_colour_consistency_in_HVS_run_2
+use_DEM: true
+lambda_color_consistency:
+lambda_hvs_l1: 10.0
+zero_shadows_in_D: true
+additional_lambda_l1: 1.0
+lambda_selected_loss: 40.0
+type_loss_G_colour: VGG

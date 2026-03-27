@@ -1,0 +1,80 @@
+# === Vanilla SRNet (pix2pix) ===
+# - Generator: U-Net 256
+# - Discriminator: PatchGAN (basic)
+# - Loss: GAN (vanilla) + L1 reconstruction
+# - Optim: Adam (lr=2e-4, betas=0.5, 0.999)
+# - Train: 512x512 crops, batch_size=4, epochs=200
+name: vanilla_SRNet
+batch_size: 8
+num_workers: 4
+prefetch_factor: 2
+epoch_count: 250              # total epochs
+epoch_count_decay: 0          # keep constant LR
+save_epoch_freq: 10
+update_html_freq: 10          # visualization cadence
+aug_crop_size: 256            # 512x512 as in paper (training patches)
+SIZE_MINIBATCHES: 1
+PRINT_NUM_MINIBATCHES: 1
+isTrain: true
+model: pix2pix
+gpu_ids: [0]
+checkpoints_dir: ./datasets/checkpoints
+continue_train: false
+load_checkpoint: null
+verbose: null
+no_html: null
+display_winsize: 512
+clearml_project: deshadow
+
+# --- model (pix2pix/SRNet) ---
+input_nc: 3
+output_nc: 3
+netG: "unet_256"              # U-Net 256
+ngf: 64
+netD: "basic"                 # 70x70 PatchGAN head
+ndf: 64
+n_layers_D: 3                 # ignored by 'basic'
+norm: "batch"
+init_type: "normal"
+init_gain: 0.02
+residual_network: false       # G(A), not G(A)+A
+
+# --- losses ---
+gan_mode: "hinge"           # BCEWithLogits
+type_loss: "L1"               # pixel L1 recon loss
+lambda_selected_loss: 100.0   # standard pix2pix weight for L1
+# keep all extras OFF for vanilla behavior
+use_shadow_attention: false
+zero_shadows_in_D: false
+zero_shadows_in_G: false
+lambda_color_consistency: 0.0
+type_loss_G_colour: null
+lambda_hvs_l1: 0.0
+additional_lambda_l1: 0.0
+lambda_laplacian_loss: 0.0
+
+# --- optimizer / schedule ---
+lr: 0.0002
+lrG: 0.0002
+lrD: 0.0002
+beta1: 0.5
+beta2: 0.999
+lr_policy: "linear"           # constant (since epoch_count_decay=0)
+
+# --- GAN/disc options (all OFF for vanilla SRNet) ---
+label_smooth_real: 1.0
+relativisticD: false
+r1_gamma: 0.0
+use_SN_G: false
+use_SN_D: false
+dropout_G: 0.0
+dropout_D: 0.0
+attention_layer_depth: null
+gen_attn_enc: null
+gen_attn_dec: null
+
+# --- data modalities ---
+use_DEM: false                # RGB-only as in SRNet
+
+# Optional test/val loader knobs (kept simple & safe)
+

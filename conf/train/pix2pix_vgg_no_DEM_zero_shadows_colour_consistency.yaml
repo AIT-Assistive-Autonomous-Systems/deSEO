@@ -1,0 +1,10 @@
+defaults:
+  - pix2pix_vgg        # pull in conf/train/base.yaml
+  - _self_      # then override with the keys in THIS file
+
+
+name: pix2pix_vgg_no_DEM_zero_shadows_colour_consistency
+use_DEM: false
+lambda_color_consistency: 5.0
+type_loss_G_colour: VGG
+zero_shadows_in_D: true

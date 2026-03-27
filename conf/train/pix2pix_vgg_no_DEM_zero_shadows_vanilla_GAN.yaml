@@ -1,0 +1,9 @@
+defaults:
+  - pix2pix_vgg        # pull in conf/train/base.yaml
+  - _self_      # then override with the keys in THIS file
+
+name: pix2pix_vgg_no_DEM_zero_shadows_vanilla_GAN
+zero_shadows_in_D: true
+use_DEM: false
+batch_size: 16
+gan_mode: vanilla

@@ -1,0 +1,27 @@
+paths:
+  PATH_MASKS: ${hydra:runtime.cwd}/datasets/SEO/shadows_max/shadow_max_compressed/shadow_masks
+  PATH_RGB: ${hydra:runtime.cwd}/datasets/SEO/pansharpened_he
+  PATH_METADATA: ${hydra:runtime.cwd}/datasets/SEO/rpcs/root_dir_ba
+  PATH_RESULTS: ${hydra:runtime.cwd}/results
+  PATH_myDataset: ${hydra:runtime.cwd}/datasets/deSEO
+  PATH_CACHE: ${hydra:runtime.cwd}/datasets/deSEO/cache_offline
+  ROOT_YAML_DIR: ${hydra:runtime.cwd}/datasets/deSEO
+  DEM_TIF_DIR: ${hydra:runtime.cwd}/datasets/SEO/rdsm_max_compressed
+filters:
+  MIN_BBOX_IOU: 0.7
+  MAX_DELTA_OFF_NADIR_DEG: 6.0
+  MAX_DELTA_AZIMUTH_DEG: 10.0
+  MAX_DELTA_SUN_EL_DEG: 120.0
+  MAX_NODATA_FRAC: 0.03
+  DELTA_DAYS: 30
+  Max_Shadow_Mask_Selection: false
+  MIN_SHADOW_FRAC: 0.1
+  DELTA_DAYS_WINTER: 10
+patterns:
+  RGB_NAME: '{idx}.png'
+  MASK_NAME: '{idx}_mask.png'
+  META_NAME: '{idx}.json'
+NAME: deSEO
+SPLIT: train
+CROP_SIZE: 576
+CROPS_PER_SCENE: 10

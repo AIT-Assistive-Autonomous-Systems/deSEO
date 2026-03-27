@@ -1,0 +1,65 @@
+defaults:
+  - pix2pix_vgg        # pull in conf/train/base.yaml
+  - _self_      # then override with the keys in THIS file
+
+
+name: pix2pix_vgg_DEM_zero_shadows_colour_consistency_in_HVS_run_6
+lambda_color_consistency:
+lambda_hvs_l1: 10.0
+zero_shadows_in_D: true
+netG: unet_256
+# reconstruction loss
+type_loss: VGG
+lambda_selected_loss: 20.0          # keep if your training loop still reads this
+additional_lambda_l1: 2
+r1_gamma:
+use_SN_G: false
+use_SN_D: false
+
+
+# data / mode (do NOT set dataset group here; that's controlled by `defaults.dataset`)
+dataset_mode: aligned
+use_DEM: true
+
+# optimization
+batch_size: 12
+beta1: 0.5
+beta2: 0.999
+lrD: 0.0001
+lrG: 0.0001
+D_steps_per_G: 1
+lr_policy: cosine
+cosine_warmup_T_mult:
+cosine_warmup_eta_min:
+lr_decay_iters: 250
+epoch_count: 250
+D_steps_per_G_current:    
+
+# GAN / nets
+gan_mode: hinge
+netD: n_layers
+n_layers_D: 4
+n_layers_G:
+ndf: 112
+ngf: 112
+attention_layer_depth: [64, 32, 16]
+gen_attn_dec: [64, 32, 16]
+dropout_D: 0.15
+dropout_G: 0.1
+relativisticD: false
+residual_network: false
+norm: instance
+D_warmup_D_steps: 2
+D_warmup_epochs: 20
+
+
+# aug / loader
+aug_crop_size: 256
+num_workers: 4
+prefetch_factor: 6
+
+# misc
+clearml_project: deshadow
+no_html: true
+display_id: 0
+

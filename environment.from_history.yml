@@ -1,0 +1,15 @@
+name: deshadow
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - matplotlib=3.3.4
+  - python=3.8
+  - numpy=1.19.5
+  - pywavelets=1.1.1
+  - scikit-image=0.17.2
+  - visdom=0.2.4
+  - datasets
+  - gdal
+  - pyarrow[version='>=8,<15']
+prefix: /opt/conda/envs/deshadow

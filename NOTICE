@@ -1,0 +1,7 @@
+This project includes third-party software:
+
+- pix2pix (BSD License)
+- CycleGAN (BSD License)
+- DCGAN (BSD License)
+
+See THIRD_PARTY_LICENSES.md for full license texts.

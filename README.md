@@ -89,6 +89,49 @@ Training and inference scripts, the ablation study, along with pretrained weight
 | Epochs                 | 100                        | Training duration |
 | Data Augmentation      | 256×256 crops, H-flip      | Random crops + flipping |
 
+#### Hyperparameters for pretraining and finetuning
+
+*D and G denote the discriminator and the generator, respectively. The λ terms are multiplicative loss weights.*
+
+| Parameter | Pretraining | Finetuning |
+|----------|------------|------------|
+| **Optimisation** |  |  |
+| lr_G | 0.0001 | 0.0001 |
+| lr_D | 0.0001 | 0.0001 |
+| Epochs | 130 | 250 |
+| Scheduler | Cosine no restart | Cosine no restart |
+| Batch Size | 12 | 3 |
+| Norm | Instance | Instance |
+| Optimiser | Adam | Adam |
+| Adam β₁ | 0.5 | 0.5 |
+| Adam β₂ | 0.999 | 0.999 |
+| **Training schedule** |  |  |
+| D warmup updates / G | 2 | 2 |
+| D warmup epochs | 20 | 20 |
+| **Losses** |  |  |
+| Label smoothing | 1.0 | 1.0 |
+| λ_{L1 HS} | 10.0 | 10.0 |
+| λ_{+L1} | 2 | 2 |
+| λ_col / col. | -- | -- |
+| Zero shadows in D | Yes | Yes |
+| λ_rec | 20 | 20 |
+| Reconstruction loss | VGG19 L1 | VGG19 L1 |
+| Adversarial loss | Hinge | Hinge |
+| **Architecture** |  |  |
+| Number G filters | 112 | 112 |
+| Number D filters | 112 | 112 |
+| Number G layers | 8 | 8 |
+| Number D layers | 4 | 4 |
+| gen_attn_dec | [64, 32] | [32, 16] |
+| Spectral norm in D | No | Yes |
+| Use DSM | YES | YES |
+| Use Gamma attention | No | Yes |
+| Use Shadow attention | No | Yes |
+| Dropout G | 0 | 0.1 |
+| Dropout D | 0.15 | 0.15 |
+| Augmentation | 256×256 random crops | 256×256 random crops |
+
+
 ## ACKNOWLEDGMENTS
 This work is inspired by:
 CycleGAN and pix2pix in PyTorch: [https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix](https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix)

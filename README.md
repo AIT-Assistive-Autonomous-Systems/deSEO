@@ -57,6 +57,38 @@ The dataset is now ready for training or inference.
 The current demo version of this repository includes only the dataset construction pipeline.
 Training and inference scripts, the ablation study, along with pretrained weights and Docker images for full reproducibility, will be released soon.
 
+### Hyperparameter tables
+#### Architecture
+
+| Component              | Value              | Description |
+|------------------------|--------------------|-------------|
+| Generator              | U-Net (pix2pix)    | Encoder–decoder with skip connections for residual deshadowing |
+| Discriminator          | PatchGAN           | Patch-based discriminator for local realism |
+| Self-Attention (D)     | [32, 16]           | SAGAN-style attention at 32×32 and 16×16 scales |
+| Self-Attention (G)     | [64, 32]           | Attention in decoder at 64×64 and 32×32 |
+| ngf / ndf              | 64 / 64            | Base channel width |
+
+#### Losses and Weights
+
+| Parameter              | Value     | Description |
+|------------------------|-----------|-------------|
+| λ_rec                  | 20        | Main reconstruction loss weight |
+| λ_+L1                  | 2         | Auxiliary global L1 loss |
+| λ_L1,HS                | 20        | L1 loss on hue–saturation channels |
+| Colour-consistency     | 1 / VGG   | VGG-based colour consistency |
+| Perceptual loss        | VGG19 L1  | Feature-space reconstruction loss |
+| Adversarial loss       | HingeGAN  | Hinge GAN objective |
+
+#### Regularisation and Training
+
+| Parameter              | Value                      | Description |
+|------------------------|----------------------------|-------------|
+| Dropout (G / D)        | 0.1                        | Applied to both networks |
+| Spectral Norm (G / D)  | True                       | Stabilises discriminator |
+| Update Ratio (G:D)     | 1:2 (first 20 epochs)      | Discriminator warm-up |
+| Epochs                 | 100                        | Training duration |
+| Data Augmentation      | 256×256 crops, H-flip      | Random crops + flipping |
+
 ## ACKNOWLEDGMENTS
 This work is inspired by:
 CycleGAN and pix2pix in PyTorch: [https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix](https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix)
